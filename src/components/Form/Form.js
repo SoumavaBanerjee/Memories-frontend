@@ -4,7 +4,12 @@ import makeStyles from "./styles";
 
 const Form = () => {
   const classes = makeStyles();
-  return <Container></Container>;
+  return (
+    <Container>
+      {" "}
+      <h1>FORM</h1>
+    </Container>
+  );
 };
 
 export default Form;
