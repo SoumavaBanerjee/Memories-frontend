@@ -6,6 +6,8 @@ import {
   Grid,
   Grow,
   CssBaseline,
+  useMediaQuery,
+  useTheme,
 } from "@material-ui/core";
 
 import { useDispatch } from "react-redux";
@@ -18,6 +20,12 @@ import makeStyles from "./styles";
 const App = () => {
   const classes = makeStyles();
   const dispatch = useDispatch();
+  const theme = useTheme();
+  const isbigScreen = useMediaQuery(theme.breakpoints.up("sm"));
+
+  const gridProps = {
+    direction: isbigScreen ? "row" : "column-reverse",
+  };
 
   useEffect(() => {
     dispatch(getPosts());
@@ -44,6 +52,7 @@ const App = () => {
             justify="space-between"
             alignItems="stretch"
             spacing={3}
+            {...gridProps}
           >
             <Grid item xs={12} sm={7}>
               <Posts />

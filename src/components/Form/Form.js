@@ -1,14 +1,27 @@
-import { Container, TextField } from "@material-ui/core";
+import { TextField, Paper, Button, Typography } from "@material-ui/core";
 import React from "react";
 import makeStyles from "./styles";
 
 const Form = () => {
   const classes = makeStyles();
+  const handleSubmit = () => {};
   return (
-    <Container>
-      {" "}
-      <h1>FORM</h1>
-    </Container>
+    <Paper className={classes.paper}>
+      <form
+        autoComplete="off"
+        noValidate
+        className={classes.form}
+        onSubmit={handleSubmit()}
+      >
+        <Typography variant="h6">Memory!</Typography>
+        <TextField
+          name="creator"
+          label="Creator"
+          variant="outlined"
+          fullWidth
+        />
+      </form>
+    </Paper>
   );
 };
 
