@@ -1,10 +1,9 @@
-import { blue } from "@material-ui/core/colors";
-import { purple } from "@material-ui/core/colors";
-import { makeStyles } from "@material-ui/core/styles";
+import { purple } from '@material-ui/core/colors';
+import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
   root: {
-    "& .MuiTextField-root": {
+    '& .MuiTextField-root': {
       margin: theme.spacing(2),
     },
   },
@@ -12,18 +11,24 @@ export default makeStyles((theme) => ({
     padding: theme.spacing(2),
   },
   form: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "center",
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
   },
   fileInput: {
-    width: "97%",
-    margin: "10px 0",
+    width: '97%',
+  },
+  input: {
+    background: purple[500],
   },
   buttonSubmit: {
-    marginBottom: 10,
+    margin: theme.spacing(3),
+    color: purple[400],
   },
-  accountBox: {
+  icons: {
     color: purple[300],
+  },
+  textFiledSpacing: {
+    margin: '8px 2px',
   },
 }));
