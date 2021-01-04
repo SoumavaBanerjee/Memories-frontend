@@ -3,14 +3,14 @@ import { TextField, Paper, Button, Typography } from '@material-ui/core';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import TitleIcon from '@material-ui/icons/Title';
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
-import ImageIcon from '@material-ui/icons/Image';
 import NoteIcon from '@material-ui/icons/Note';
-import SaveIcon from '@material-ui/icons/Save';
 import InputAdornment from '@material-ui/core/InputAdornment';
-
 import FileInput from 'react-file-base64';
 
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createPost } from '../../actions/posts';
+
 import makeStyles from './styles';
 
 const Form = () => {
@@ -25,12 +25,29 @@ const Form = () => {
   });
 
   /* eslint-disable no-console */
-  console.log(postData);
+  // console.log(postData);
 
-  const handleSubmit = () => {};
+  const handleSubmit = (post) => {
+    useDispatch(createPost(post));
+  };
+
+  const handleClear = () => {
+    setPostData({
+      creator: '',
+      title: '',
+      message: '',
+      tags: '',
+      Selectedfile: '',
+    });
+  };
   return (
     <Paper elevation={3} className={classes.paper}>
-      <form autoComplete="off" noValidate className={classes.form} onSubmit={handleSubmit()}>
+      <form
+        autoComplete="off"
+        noValidate
+        className={`${classes.form} ${classes.root}`}
+        onSubmit={handleSubmit()}
+      >
         <Typography variant="h5" className={classes.formHead}>
           Create Your Memory!
         </Typography>
@@ -111,44 +128,33 @@ const Form = () => {
             setPostData({ ...postData, tags: e.target.value });
           }}
         />
-
-        <TextField
-          className={classes.textFiledSpacing}
-          name="selectedFile"
-          label="Image"
-          variant="outlined"
-          fullWidth
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <ImageIcon fontSize="small" className={classes.icons} />
-              </InputAdornment>
-            ),
-          }}
-          value={postData.Selectedfile}
-          onChange={(e) => {
-            setPostData({ ...postData, Selectedfile: e.target.value });
-          }}
-        />
         <div className={classes.fileInput}>
           <FileInput
             /* eslint-disable react/jsx-boolean-value */
             multiple={false}
             onDone={({ base64 }) => {
-              setPostData({ ...postData, Selectedfile: 'base64' });
+              setPostData({ ...postData, Selectedfile: base64 });
             }}
           />
         </div>
         <Button
+          className={classes.formButton}
           variant="contained"
-          size="medium"
-          fullwidth
-          className={classes.button}
-          startIcon={<SaveIcon />}
+          color="primary"
           type="submit"
-          onSubmit={handleSubmit()}
+          fullWidth
+          onSubmit={handleSubmit}
         >
           Save
+        </Button>
+        <Button
+          className={classes.formButton}
+          variant="contained"
+          color="secondary"
+          onClick={handleClear}
+          fullWidth
+        >
+          Reset all
         </Button>
       </form>
     </Paper>

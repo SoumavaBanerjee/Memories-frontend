@@ -1,4 +1,4 @@
-import { purple } from '@material-ui/core/colors';
+import { indigo } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
@@ -19,14 +19,13 @@ export default makeStyles((theme) => ({
     width: '97%',
   },
   input: {
-    background: purple[500],
+    background: indigo[500],
   },
-  buttonSubmit: {
-    margin: theme.spacing(3),
-    color: purple[400],
+  formButton: {
+    margin: theme.spacing(1),
   },
   icons: {
-    color: purple[300],
+    color: indigo[300],
   },
   textFiledSpacing: {
     margin: '8px 2px',

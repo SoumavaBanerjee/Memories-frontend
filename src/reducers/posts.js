@@ -1,7 +1,7 @@
-import { FETCH_ALL, CREATE } from "../ActionTypes/actionTypes";
+import { FETCH_ALL, CREATE } from '../ActionTypes/actionTypes';
 
+// eslint-disable-next-line no-shadow
 const posts = (posts = [], action) => {
-  console.log(action.type);
   switch (action.type) {
     case FETCH_ALL:
       return action.payload;
