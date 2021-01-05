@@ -15,38 +15,39 @@ import makeStyles from './styles';
 
 const Form = () => {
   const classes = makeStyles();
-
   const [postData, setPostData] = useState({
     creator: '',
     title: '',
     message: '',
     tags: '',
-    Selectedfile: '',
+    selectedFile: '',
   });
+  const dispatch = useDispatch();
 
-  /* eslint-disable no-console */
-  // console.log(postData);
-
-  const handleSubmit = (post) => {
-    useDispatch(createPost(post));
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('Inside Handle Submit');
+    dispatch(createPost(postData));
   };
 
   const handleClear = () => {
+    console.log('inside HandleClear');
     setPostData({
       creator: '',
       title: '',
       message: '',
       tags: '',
-      Selectedfile: '',
+      selectedFile: '',
     });
   };
+
   return (
     <Paper elevation={3} className={classes.paper}>
       <form
         autoComplete="off"
         noValidate
         className={`${classes.form} ${classes.root}`}
-        onSubmit={handleSubmit()}
+        onSubmit={handleSubmit}
       >
         <Typography variant="h5" className={classes.formHead}>
           Create Your Memory!
@@ -131,9 +132,11 @@ const Form = () => {
         <div className={classes.fileInput}>
           <FileInput
             /* eslint-disable react/jsx-boolean-value */
+            type="file"
             multiple={false}
             onDone={({ base64 }) => {
-              setPostData({ ...postData, Selectedfile: base64 });
+              console.log(base64);
+              setPostData({ ...postData, selectedFile: base64 });
             }}
           />
         </div>
@@ -143,7 +146,6 @@ const Form = () => {
           color="primary"
           type="submit"
           fullWidth
-          onSubmit={handleSubmit}
         >
           Save
         </Button>

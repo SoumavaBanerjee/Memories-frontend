@@ -1,7 +1,8 @@
-import React from "react";
-import makeStyles from "./styles";
+import React from 'react';
+import makeStyles from './styles';
 
 const Post = () => {
+  // eslint-disable-next-line no-unused-vars
   const classes = makeStyles();
   return (
     <div>
