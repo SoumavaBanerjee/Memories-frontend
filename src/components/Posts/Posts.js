@@ -1,7 +1,11 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import Post from "./Post/Post";
-import makeStyles from "./styles";
+import React from 'react';
+import { useSelector } from 'react-redux';
+
+import { Grid } from '@material-ui/core';
+import Skeleton from '@material-ui/lab/Skeleton';
+
+import Post from './Post/Post';
+import makeStyles from './styles';
 
 const Posts = () => {
   const posts = useSelector((state) => state.posts);
@@ -9,13 +13,18 @@ const Posts = () => {
 
   // console.log(posts);
 
-  return (
+  return !posts.length ? (
     <div>
-      <h1>Multiple posts here</h1>
-      <Post />
-      <Post />
-      <Post />
+      <Skeleton variant="rect" width={200} height={200} />
+      <Skeleton variant="text" width={100} />
+      <Skeleton variant="text" width={150} />
     </div>
+  ) : (
+    <Grid container>
+      <Post />
+      <Post />
+      <Post />
+    </Grid>
   );
 };
 

@@ -132,6 +132,7 @@ const Form = () => {
         <div className={classes.fileInput}>
           <FileInput
             /* eslint-disable react/jsx-boolean-value */
+            className={classes.fileInput}
             type="file"
             multiple={false}
             onDone={({ base64 }) => {
