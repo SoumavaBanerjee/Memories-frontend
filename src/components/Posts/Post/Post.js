@@ -6,6 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import EditIcon from '@material-ui/icons/Edit';
 
+import formatDistance from 'date-fns/formatDistance';
+
 import moment from 'moment';
 
 const Post = ({ post }) => {
@@ -16,7 +18,9 @@ const Post = ({ post }) => {
       <CardMedia className={classes.media} image={post.selectedFile} title={post.title} />
       <div className={classes.overlay}>
         <Typography variant="h6">{post.creator}</Typography>
-        <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
+        <Typography variant="body2">
+          {formatDistance(post.createdAt, new Date(), { addSuffix: true })}
+        </Typography>
       </div>
     </Card>
   );
