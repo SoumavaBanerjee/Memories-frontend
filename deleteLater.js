@@ -19,6 +19,7 @@ tags.map((tag) => {
   let newString = '';
   if (tag.includes(',')) includeComma = true;
   if (includeComma) {
+    // eslint-disable-next-line no-unused-vars
     if (tag.charAt(0)) newString = tag.slice(1);
   }
   return tag;

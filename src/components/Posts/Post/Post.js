@@ -1,7 +1,7 @@
 import React from 'react';
 import makeStyles from './styles';
 
-import { Card, CardActions, CardHeader, CardMedia, CardContent, Button } from '@material-ui/core';
+import { Card, CardActions, CardMedia, CardContent, Button } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import EditIcon from '@material-ui/icons/Edit';
@@ -10,13 +10,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import moment from 'moment';
 
 const Post = ({ post }) => {
-  // eslint-disable-next-line no-unused-vars
   const classes = makeStyles();
   console.log(post);
-  // useEffect(() => {
-  //   parseISO(postDate);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
 
   const handleClickEdit = (event) => {
     event.preventDefault();
