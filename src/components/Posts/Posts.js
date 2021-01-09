@@ -10,7 +10,7 @@ const Posts = () => {
   const posts = useSelector((state) => state.posts);
   const classes = makeStyles();
 
-  // console.log(posts);
+  console.log(posts);
 
   return !posts.length ? (
     <Grid
@@ -18,7 +18,7 @@ const Posts = () => {
       container
       justify="center"
       alignItems="stretch"
-      spacing={3}
+      spacing={2}
     >
       <Grid item sm={12} md={6}>
         <PostSkeleton />
@@ -39,7 +39,7 @@ const Posts = () => {
       container
       justify="center"
       alignItems="stretch"
-      spacing={3}
+      spacing={2}
     >
       {posts.map((post) => (
         <Grid key={post._id} item sm={12} md={6}>
