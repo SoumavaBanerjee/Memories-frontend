@@ -7,13 +7,12 @@ export const getPosts = () => async (dispatch) => {
   try {
     const { data } = await api.fetchPosts();
     // debug line
-    console.log({ data });
 
     const action = { type: FETCH_ALL, payload: data };
     dispatch(action);
   } catch (error) {
     /* eslint-disable no-console */
-    console.log(error.message);
+    console.log(error);
   }
 };
 

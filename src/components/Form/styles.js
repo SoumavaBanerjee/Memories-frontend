@@ -22,7 +22,7 @@ export default makeStyles((theme) => ({
     background: indigo[500],
   },
   formButton: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(2),
   },
   icons: {
     color: indigo[300],

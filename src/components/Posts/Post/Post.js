@@ -11,7 +11,6 @@ import moment from 'moment';
 
 const Post = ({ post }) => {
   const classes = makeStyles();
-  console.log(post);
 
   const handleClickEdit = (event) => {
     event.preventDefault();
@@ -29,7 +28,7 @@ const Post = ({ post }) => {
   };
 
   return (
-    <Card className={classes.card}>
+    <Card className={`${classes.card} ${classes.fullHeightCard}`}>
       <CardMedia className={classes.media} image={post.selectedFile} title={post.title} />
       <div className={classes.overlay}>
         <Typography variant="h6">{post.creator}</Typography>
@@ -55,11 +54,21 @@ const Post = ({ post }) => {
       </CardContent>
       <CardActions className={classes.cardActions}>
         <Button size="small">
-          <ThumbUpAltIcon fontSize="default" color="primary" onClick={handleClickLike} />
+          <ThumbUpAltIcon
+            className={classes.iconMargin}
+            fontSize="default"
+            color="primary"
+            onClick={handleClickLike}
+          />
           {`Like ${post.likeCount}`}
         </Button>
         <Button size="small">
-          <DeleteIcon fontSize="default" color="primary" onClick={handleClickDelete} />
+          <DeleteIcon
+            className={classes.iconMargin}
+            fontSize="default"
+            color="primary"
+            onClick={handleClickDelete}
+          />
           {`Delete`}
         </Button>
       </CardActions>

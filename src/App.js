@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Container,
   AppBar,
   Typography,
   Grid,
   Grow,
-  CssBaseline,
   useMediaQuery,
   useTheme,
 } from '@material-ui/core';
@@ -21,7 +20,9 @@ const App = () => {
   const classes = makeStyles();
   const dispatch = useDispatch();
   const theme = useTheme();
-  const isbigScreen = useMediaQuery(theme.breakpoints.up('sm'));
+  const isbigScreen = useMediaQuery(theme.breakpoints.up('md'));
+
+  const [currentId, setCurrentId] = useState(null);
 
   const gridProps = {
     direction: isbigScreen ? 'row' : 'column-reverse',
@@ -33,7 +34,6 @@ const App = () => {
 
   return (
     <Container maxWidth="lg">
-      <CssBaseline />
       <AppBar className={classes.appBar} position="static" color="inherit">
         <Typography className={classes.heading} variant="h3" align="center">
           Memories
@@ -41,20 +41,20 @@ const App = () => {
         <img className={classes.image} src={memories} alt="memories" height="60" />
       </AppBar>
       <Grow in>
-        <Container>
+        <Container spacing={2}>
           <Grid
             container
             justify="space-between"
-            alignItems="stretch"
+            alignItems="flex-start"
             spacing={3}
             /* eslint-disable react/jsx-props-no-spreading */
             {...gridProps}
           >
-            <Grid item xs={12} sm={7}>
-              <Posts />
+            <Grid item xs={12} md={8}>
+              <Posts setCurrentId={setCurrentId} />
             </Grid>
-            <Grid item xs={12} sm={4}>
-              <Form />
+            <Grid item xs={12} md={4}>
+              <Form currentId={currentId} setCurrentId={setCurrentId} />
             </Grid>
           </Grid>
         </Container>

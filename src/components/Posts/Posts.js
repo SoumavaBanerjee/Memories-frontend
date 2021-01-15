@@ -3,47 +3,20 @@ import { useSelector } from 'react-redux';
 import { Grid } from '@material-ui/core';
 
 import Post from './Post/Post';
-import PostSkeleton from './PostSkeleton/postSkeleton';
+import PostSkeleton from './PostSkeleton/PostSkeleton';
 import makeStyles from './styles';
 
-const Posts = () => {
+const Posts = ({ setCurrentId }) => {
   const posts = useSelector((state) => state.posts);
   const classes = makeStyles();
 
-  console.log(posts);
-
   return !posts.length ? (
-    <Grid
-      className={classes.mainContainer}
-      container
-      justify="center"
-      alignItems="stretch"
-      spacing={2}
-    >
-      <Grid item sm={12} md={6}>
-        <PostSkeleton />
-      </Grid>
-      <Grid item sm={12} md={6}>
-        <PostSkeleton />
-      </Grid>
-      <Grid item sm={12} md={6}>
-        <PostSkeleton />
-      </Grid>
-      <Grid item sm={12} md={6}>
-        <PostSkeleton />
-      </Grid>
-    </Grid>
+    <PostSkeleton />
   ) : (
-    <Grid
-      className={classes.mainContainer}
-      container
-      justify="center"
-      alignItems="stretch"
-      spacing={2}
-    >
+    <Grid className={classes.container} container alignItems="stretch" spacing={3}>
       {posts.map((post) => (
-        <Grid key={post._id} item sm={12} md={6}>
-          <Post post={post}></Post>
+        <Grid key={post._id} item xs={12} sm={6} md={6}>
+          <Post post={post} />
         </Grid>
       ))}
     </Grid>

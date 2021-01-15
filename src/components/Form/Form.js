@@ -7,14 +7,15 @@ import NoteIcon from '@material-ui/icons/Note';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FileInput from 'react-file-base64';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { createPost } from '../../actions/posts';
 
 import makeStyles from './styles';
 
-const Form = () => {
+const Form = ({ currentId, setCurrentId }) => {
   const classes = makeStyles();
+
   const [postData, setPostData] = useState({
     creator: '',
     title: '',
@@ -26,12 +27,11 @@ const Form = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Inside Handle Submit');
     dispatch(createPost(postData));
+    clear();
   };
 
-  const handleClear = () => {
-    console.log('inside HandleClear');
+  const clear = () => {
     setPostData({
       creator: '',
       title: '',
@@ -126,7 +126,7 @@ const Form = () => {
           }}
           value={postData.tags}
           onChange={(e) => {
-            setPostData({ ...postData, tags: e.target.value });
+            setPostData({ ...postData, tags: e.target.value.split(',') });
           }}
         />
         <div className={classes.fileInput}>
@@ -136,7 +136,6 @@ const Form = () => {
             type="file"
             multiple={false}
             onDone={({ base64 }) => {
-              console.log(base64);
               setPostData({ ...postData, selectedFile: base64 });
             }}
           />
@@ -154,7 +153,7 @@ const Form = () => {
           className={classes.formButton}
           variant="contained"
           color="secondary"
-          onClick={handleClear}
+          onClick={clear}
           fullWidth
         >
           Reset all
