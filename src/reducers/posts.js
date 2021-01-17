@@ -1,4 +1,4 @@
-import { FETCH_ALL, CREATE } from '../ActionTypes/actionTypes';
+import { FETCH_ALL, CREATE, UPDATE } from '../ActionTypes/actionTypes';
 
 const posts = (posts = [], action) => {
   switch (action.type) {
@@ -8,6 +8,9 @@ const posts = (posts = [], action) => {
     case CREATE:
       console.log(posts);
       return [...posts, action.payload];
+
+    case UPDATE:
+      return posts.map((post) => (post._id === action.payload._id ? action.payload : post));
 
     default:
       return posts;

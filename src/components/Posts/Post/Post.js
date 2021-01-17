@@ -9,12 +9,12 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 import moment from 'moment';
 
-const Post = ({ post }) => {
+const Post = ({ post, setCurrentId }) => {
   const classes = makeStyles();
 
   const handleClickEdit = (event) => {
     event.preventDefault();
-    console.log('Clicking delete button');
+    setCurrentId(post._id);
   };
 
   const handleClickDelete = (event) => {

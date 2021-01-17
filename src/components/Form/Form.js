@@ -8,13 +8,21 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import FileInput from 'react-file-base64';
 
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { createPost } from '../../actions/posts';
+import { useDispatch, useSelector } from 'react-redux';
+import { createPost, updatePost } from '../../actions/posts';
 
 import makeStyles from './styles';
 
 const Form = ({ currentId, setCurrentId }) => {
   const classes = makeStyles();
+  const post = useSelector((state) =>
+    currentId ? state.posts.find((p) => p._id === currentId) : null,
+  );
+
+  useEffect(() => {
+    console.log(post);
+    if (post) setPostData(post);
+  }, [post]);
 
   const [postData, setPostData] = useState({
     creator: '',
@@ -27,7 +35,13 @@ const Form = ({ currentId, setCurrentId }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(createPost(postData));
+    console.log(postData);
+
+    if (currentId) {
+      dispatch(updatePost(currentId, postData));
+    } else {
+      dispatch(createPost(postData));
+    }
     clear();
   };
 

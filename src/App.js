@@ -24,6 +24,8 @@ const App = () => {
 
   const [currentId, setCurrentId] = useState(null);
 
+  console.log(currentId);
+
   const gridProps = {
     direction: isbigScreen ? 'row' : 'column-reverse',
   };
