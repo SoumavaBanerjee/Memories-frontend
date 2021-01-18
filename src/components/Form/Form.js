@@ -42,10 +42,12 @@ const Form = ({ currentId, setCurrentId }) => {
     } else {
       dispatch(createPost(postData));
     }
+
     clear();
   };
 
-  const clear = () => {
+  const clear = (currentId) => {
+    setCurrentId(null);
     setPostData({
       creator: '',
       title: '',
@@ -64,7 +66,7 @@ const Form = ({ currentId, setCurrentId }) => {
         onSubmit={handleSubmit}
       >
         <Typography variant="h5" className={classes.formHead}>
-          Create Your Memory!
+          {currentId ? 'Edit' : 'Create'} your Memory
         </Typography>
         <TextField
           className={classes.textFiledSpacing}

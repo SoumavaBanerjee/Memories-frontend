@@ -13,17 +13,14 @@ const Post = ({ post, setCurrentId }) => {
   const classes = makeStyles();
 
   const handleClickEdit = (event) => {
-    event.preventDefault();
     setCurrentId(post._id);
   };
 
   const handleClickDelete = (event) => {
-    event.preventDefault();
     console.log('Clicking the Delete button');
   };
 
   const handleClickLike = (event) => {
-    event.preventDefault();
     console.log('Clicking the Like button');
   };
 
@@ -47,8 +44,11 @@ const Post = ({ post, setCurrentId }) => {
           {post.tags.map((tag) => `#${tag} `)}
         </Typography>
       </div>
+      <Typography className={classes.title} variant="h5" gutterBottom>
+        {post.title}
+      </Typography>
       <CardContent>
-        <Typography className={classes.title} variant="h5" gutterBottom>
+        <Typography variant="h5" gutterBottom>
           {post.message}
         </Typography>
       </CardContent>
