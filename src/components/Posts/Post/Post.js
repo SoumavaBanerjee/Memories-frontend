@@ -1,4 +1,7 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { deletePost } from '../../../actions/posts';
+
 import makeStyles from './styles';
 
 import { Card, CardActions, CardMedia, CardContent, Button } from '@material-ui/core';
@@ -11,13 +14,14 @@ import moment from 'moment';
 
 const Post = ({ post, setCurrentId }) => {
   const classes = makeStyles();
+  const dispatch = useDispatch();
 
   const handleClickEdit = (event) => {
     setCurrentId(post._id);
   };
 
   const handleClickDelete = (event) => {
-    console.log('Clicking the Delete button');
+    dispatch(deletePost(post._id));
   };
 
   const handleClickLike = (event) => {

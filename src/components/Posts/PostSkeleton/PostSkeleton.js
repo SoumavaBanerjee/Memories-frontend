@@ -10,12 +10,14 @@ const PostSkeleton = () => {
   const [id] = useState(nanoid);
 
   return (
-    <Grid key={id} className={classes.container} container alignItems="stretch" spacing={3}>
+    <Grid className={classes.container} container alignItems="stretch" spacing={3}>
       {[1, 2, 3, 4].map((index) => (
-        <Grid key={`${id}_${index}`} item xs={12} sm={6} md={6}>
-          <Skeleton variant="rect" width={300} height={300} />
-          <Skeleton variant="text" width={200} />
-          <Skeleton variant="text" width={250} />
+        <Grid item key={id} xs={12} sm={6} md={6}>
+          <div>
+            <Skeleton variant="rect" width={300} height={300} />
+            <Skeleton variant="text" width={200} />
+            <Skeleton variant="text" width={250} />
+          </div>
         </Grid>
       ))}
     </Grid>

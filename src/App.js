@@ -21,14 +21,11 @@ const App = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const isbigScreen = useMediaQuery(theme.breakpoints.up('md'));
-
-  const [currentId, setCurrentId] = useState(null);
-
-  console.log(currentId);
-
   const gridProps = {
     direction: isbigScreen ? 'row' : 'column-reverse',
   };
+
+  const [currentId, setCurrentId] = useState(null);
 
   useEffect(() => {
     dispatch(getPosts());
