@@ -6,7 +6,7 @@ const posts = (posts = [], action) => {
       return action.payload;
 
     case CREATE:
-      console.log([...posts, action.payload]);
+      console.log(posts);
       return [...posts, action.payload];
 
     case UPDATE:
