@@ -29,6 +29,7 @@ const Form = ({ currentId, setCurrentId }) => {
     title: '',
     message: '',
     tags: '',
+    likeCount: 0,
     selectedFile: '',
   });
   const dispatch = useDispatch();
