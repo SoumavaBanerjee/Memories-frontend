@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { deletePost } from '../../../actions/posts';
+import { deletePost, likePost } from '../../../actions/posts';
 
 import makeStyles from './styles';
 
@@ -17,6 +17,7 @@ const Post = ({ post, setCurrentId }) => {
   const dispatch = useDispatch();
 
   const handleClickEdit = (event) => {
+    console.log(event.target.value);
     setCurrentId(post._id);
   };
 
@@ -25,7 +26,8 @@ const Post = ({ post, setCurrentId }) => {
   };
 
   const handleClickLike = (event) => {
-    console.log('Clicking the Like button');
+    console.log(event.target.value);
+    dispatch(likePost(post._id));
   };
 
   return (
@@ -52,28 +54,18 @@ const Post = ({ post, setCurrentId }) => {
         {post.title}
       </Typography>
       <CardContent>
-        <Typography variant="h5" gutterBottom>
+        <Typography variant="body2" color="textSecondary" component="p">
           {post.message}
         </Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>
-        <Button size="small">
-          <ThumbUpAltIcon
-            className={classes.iconMargin}
-            fontSize="default"
-            color="primary"
-            onClick={handleClickLike}
-          />
-          {`Like ${post.likeCount}`}
+        <Button size="small" onClick={handleClickLike}>
+          <ThumbUpAltIcon className={classes.iconMargin} fontSize="default" color="primary" />
+          {` Like ${post.likeCount}`}
         </Button>
-        <Button size="small">
-          <DeleteIcon
-            className={classes.iconMargin}
-            fontSize="default"
-            color="primary"
-            onClick={handleClickDelete}
-          />
-          {`Delete`}
+        <Button size="small" onClick={handleClickDelete}>
+          <DeleteIcon className={classes.iconMargin} fontSize="default" color="primary" />
+          {` Delete `}
         </Button>
       </CardActions>
     </Card>

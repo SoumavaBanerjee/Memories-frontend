@@ -13,3 +13,6 @@ export const updatePost = (id, updatedPost) =>
 
 export const deletePost = (id) =>
   axios.delete(`${url}/${id}`, { headers: { 'Access-Control-Allow-Origin': '*' } });
+
+export const likePost = (id) =>
+  axios.patch(`${url}/${id}/likedPost`, { headers: { 'Access-Control-Allow-Origin': '*' } });

@@ -1,17 +1,14 @@
 import * as api from '../api';
-import { FETCH_ALL, CREATE, UPDATE, DELETE } from '../ActionTypes/actionTypes';
+import { FETCH_ALL, CREATE, UPDATE, DELETE, lIKE_POST } from '../ActionTypes/actionTypes';
 
 // Create the actions.
 
 export const getPosts = () => async (dispatch) => {
   try {
     const { data } = await api.fetchPosts();
-    // debug line
-
     const action = { type: FETCH_ALL, payload: data };
     dispatch(action);
   } catch (error) {
-    /* eslint-disable no-console */
     console.log(error);
   }
 };
@@ -40,6 +37,16 @@ export const deletePost = (id) => async (dispatch) => {
   try {
     await api.deletePost(id);
     const action = { type: DELETE, payload: id };
+    dispatch(action);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const likePost = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.likePost(id);
+    const action = { type: lIKE_POST, payload: data };
     dispatch(action);
   } catch (error) {
     console.log(error);
