@@ -17,7 +17,10 @@ const Post = ({ post, setCurrentId }) => {
   const dispatch = useDispatch();
 
   const handleClickEdit = (event) => {
-    console.log(event.target.value);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
     setCurrentId(post._id);
   };
 
@@ -26,7 +29,6 @@ const Post = ({ post, setCurrentId }) => {
   };
 
   const handleClickLike = (event) => {
-    console.log(event.target.value);
     dispatch(likePost(post._id));
   };
 
@@ -47,7 +49,11 @@ const Post = ({ post, setCurrentId }) => {
       </div>
       <div className={classes.details}>
         <Typography variant="body2" color="textSecondary">
-          {post.tags.map((tag) => `#${tag} `)}
+          {post.tags.map((tag) => {
+            let hashTag = tag.trim();
+            if (hashTag.includes(' ')) return `#${hashTag.replaceAll(' ', '_')} `;
+            return `#${hashTag} `;
+          })}
         </Typography>
       </div>
       <Typography className={classes.title} variant="h5" gutterBottom>

@@ -20,7 +20,6 @@ const Form = ({ currentId, setCurrentId }) => {
   );
 
   useEffect(() => {
-    console.log(post);
     if (post) setPostData(post);
   }, [post]);
 
